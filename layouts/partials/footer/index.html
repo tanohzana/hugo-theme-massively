@@ -78,6 +78,12 @@
                 {{ with .flickr}}
                 <li><a href="{{ . }}" class="icon alt fa-flickr"><span class="label">Flickr</span></a></li>
                 {{ end }}
+                {{ with .apple }}
+                <li><a href="{{ . }}" class="icon fa-apple"><span class="label">Apple Podcasts</span></a></li>
+                {{ end }}
+                {{ with .anchor }}
+                <li><a href="{{ . }}" class="icon fa-anchor"><span class="label">Anchor</span></a></li>
+                {{ end }}
             </ul>
         </section>
         {{ end }}
