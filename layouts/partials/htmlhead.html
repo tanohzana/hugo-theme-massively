@@ -11,6 +11,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		{{ with .Keywords }}<meta name="keywords" content="{{ range $i, $e := . }}{{ if $i }} {{ end }}{{ $e }}{{ end }}" />{{ end }}
 		<meta description="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.Description }}{{ end }}" />
+		<meta property="og:title" content="{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Params.Title }}{{ end }}">
+    {{ if .IsPage }}
+    <meta property="og:type" content="article">
+    {{ else }}
+    <meta property="og:type" content="website">
+    {{ end }}
+    <meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.Description }}{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+		<meta property="og:site_name" content="{{ .Site.Title }}">
+		{{ if .Site.Params.thumbnail }}
+		<meta property="og:image" content="{{ .Site.BaseURL }}{{ if .Params.Thumbnail }}{{ .Params.Thumbnail }}{{ else }}{{ .Site.Params.Thumbnail }}{{ end }}">
+		{{ end }}
 		<!-- CSS -->
 		{{ if .Site.IsServer }}
 		{{ $style := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "enableSourceMap" true) }}
